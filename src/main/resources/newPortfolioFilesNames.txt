@@ -1,0 +1,2 @@
+client1_newPortfolio.txt
+client2_newPortfolio.txt

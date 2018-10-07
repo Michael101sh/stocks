@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.michael</groupId>
+  <artifactId>stocks.portfolios</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Stocks_portfolios_Maven_Webapp</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<jdk.version>1.8</jdk.version>
+	<basePath>src/main/resources/</basePath>
+  </properties>
+	
+  <dependencies>
+    <dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.12</version>
+    </dependency>
+	<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+	<dependency>
+		<groupId>commons-logging</groupId>
+		<artifactId>commons-logging</artifactId>
+		<version>1.2</version>
+	</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+	<dependency>
+		<groupId>com.google.code.gson</groupId>
+		<artifactId>gson</artifactId>
+		<version>2.2.2</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpclient</artifactId>
+		<version>4.5.5</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpcore</artifactId>
+		<version>4.4.9</version>
+	</dependency>
+  </dependencies>
+  
+  <build>
+  	<finalName>Stocks_portfolios_Maven_Webapp</finalName>
+	<plugins>
+		<plugin>
+			 <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-compiler-plugin</artifactId>
+             <version>2.3.2</version>
+             <configuration>
+                 <source>${jdk.version}</source>
+				 <target>${jdk.version}</target>
+				 <webXml>src\main\webapp\WEB-INF\web.xml</webXml>        
+             </configuration>
+         </plugin>
+		  
+		 <plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>exec-maven-plugin</artifactId>
+			<version>1.6.0</version>
+			<executions>
+				<execution>
+				    <id>first-execution</id>
+					<phase>compile</phase>
+					<goals>
+						<goal>java</goal>
+					</goals>
+					<configuration>
+						<mainClass>stocksPortfoliosSrc.WebServer</mainClass>
+						<arguments>
+							<parm> ${basePath} </parm>
+						</arguments>				
+					</configuration>
+				</execution>
+				<execution>
+				    <id>second-execution</id>
+					<goals>
+						<goal>java</goal>
+					</goals>
+					<configuration>
+						<mainClass>stocksPortfoliosSrc.CLIRunner</mainClass>
+						<arguments>
+							<parm> ${basePath} </parm>
+						</arguments>				
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
+  </build>
+</project>
